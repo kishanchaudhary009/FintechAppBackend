@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 const { User } = require("./models");
 const { Stock } = require("./models");
 const { Expense } = require("./models");
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for form-data and urlencoded forms
 
-const mongoURI = "mongodb+srv://fintech:25305181@cluster0.v46wk3b.mongodb.net/fintech?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_URI;
 
 mongoose.connect(mongoURI)
     .then(() => console.log("MongoDB connected"))
